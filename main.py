@@ -132,6 +132,5 @@ while i != len(card):
                 saveLoopIndex.pop(len(saveLoopIndex)-1)
             else:
                 i = saveLoopIndex(len(saveLoopIndex)-1)
-    if 
     i += 1
 print(f'pointer: {pointer}\ntape: {tape}')
