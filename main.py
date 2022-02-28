@@ -21,16 +21,37 @@ accepted = ['>', '<', '.', ',', '[', ']', '+', '-', '~', '?', '*', '/', '&']
 
 '''
 new ops:
-~: copys a number from one part of the tape to another
-?: compares two numbers on the tape, ? is equal to, ?? is greater than, ??? is less than
+~: copys a number from one part of the tape to another, e.g: >++<~> this code moves to the first index increments twice woves back to the 0 index then copys the 0 index to the 1st index
+?: compares two numbers on the tape, ? is equal to, ?? is greater than, ??? is less than, and stores the result (1 or 0) in the index next to the second number
 *: multiplies two numbers on the tape, bring the pointer to the number you want to multiply then use the op then use the '<' or '>' ops to bring the pointer to the second number. The output of this operation will be stored at the first number
 /: divides two number on the tape, works the same as the * op just with / instead. NOTE if the / op returns a decimal nothing will be changed
 &: jumps to a part of the tape and uses the current value the pointer is pointing at as an addres, NOTE because of the fact numbers can only be 0 or FF (255) you can only jump through 0-255
 '''
 
+copyVal = 0
+compareVal = 0
+#amComparing = False
+
 i = 0
 while i != len(card):
     if card[i] in accepted:
+        # news ones
+        if card[i] == '~':
+            copyVal = tape[pointer]
+            # while loop
+            while True:
+                if card[i] != ' ' and card[i] != '\n' and card[i] != '\t' and card[i] != '<' and card[i] != '>':
+                    tape[pointer] = copyVal
+                elif card[i] == '>':
+                    pointer += 1
+                elif card[i] == '<':
+                    pointer -= 1
+        if card[i] == '?':
+            compareVal = tape[pointer]
+            # while loop
+            while True:
+                
+        # defaults
         if card[i] == '+':
             tape[pointer] += 1
             if tape[pointer] > 255:
@@ -66,4 +87,5 @@ while i != len(card):
                 saveLoopIndex.pop(len(saveLoopIndex)-1)
             else:
                 i = saveLoopIndex(len(saveLoopIndex)-1)
+    if 
     i += 1
