@@ -13,7 +13,7 @@ f.close()
 
 pointer = 0
 tape = [0]
-updateLoop = []
+# updateLoop = []
 saveLoopAddress = []
 saveLoopIndex = []
 
@@ -57,5 +57,13 @@ while i != len(card):
             tape[pointer] = ord(io[0])
             if tape[pointer] > 255:
                 tape[pointer] = 0
-
-        
+        if card[i] == '[':
+            saveLoopAddress.append(tape[pointer])
+            saveLoopIndex.append(i+1)
+        if card[i] == ']':
+            if saveLoopAddress[saveLoopAddress] == 0:
+                saveLoopAddress.pop(len(saveLoopAddress)-1)
+                saveLoopIndex.pop(len(saveLoopIndex)-1)
+            else:
+                i = saveLoopIndex(len(saveLoopIndex)-1)
+    i += 1
