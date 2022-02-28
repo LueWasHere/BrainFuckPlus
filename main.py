@@ -103,7 +103,7 @@ while i != len(card):
                 tape[pointer] == 0
         if card[i] == '-':
             tape[pointer] -= 1
-            if tape < 0:
+            if tape[pointer] < 0:
                 tape[pointer] == 255
         if card[i] == '>':
             pointer += 1
@@ -117,20 +117,21 @@ while i != len(card):
             if pointer < 0:
                 pointer = 0
         if card[i] == '.':
-            print(chr(tape[pointer]))
+            print(chr(tape[pointer]), end='')
         if card[i] == ',':
             io = input()
             tape[pointer] = ord(io[0])
             if tape[pointer] > 255:
                 tape[pointer] = 0
         if card[i] == '[':
-            saveLoopAddress.append(tape[pointer])
+            saveLoopAddress.append(pointer)
             saveLoopIndex.append(i+1)
         if card[i] == ']':
-            if saveLoopAddress[saveLoopAddress] == 0:
+            if saveLoopAddress[len(saveLoopAddress)-1] == 0:
                 saveLoopAddress.pop(len(saveLoopAddress)-1)
                 saveLoopIndex.pop(len(saveLoopIndex)-1)
             else:
-                i = saveLoopIndex(len(saveLoopIndex)-1)
+                i = saveLoopIndex[len(saveLoopIndex)-1]
+                saveLoopAddress[len(saveLoopIndex)-1] = tape[saveLoopAddress[len(saveLoopAddress)-1]]
     i += 1
 print(f'pointer: {pointer}\ntape: {tape}')
