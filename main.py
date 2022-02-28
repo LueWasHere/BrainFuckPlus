@@ -134,3 +134,4 @@ while i != len(card):
                 i = saveLoopIndex(len(saveLoopIndex)-1)
     if 
     i += 1
+print(f'pointer: {pointer}\ntape: {tape}')
