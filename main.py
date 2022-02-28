@@ -47,7 +47,7 @@ while i != len(card):
         if card[i] == '/':
             maintain = tape[pointer+2]
             tape[pointer+2] = tape[pointer]/tape[pointer+1]
-            if isinstance(tape[pointer+2], float)
+            if isinstance(tape[pointer+2], float):
                 tape[pointer+2] = maintain
         if card[i] == '~':
             copyVal = tape[pointer]
@@ -85,7 +85,7 @@ while i != len(card):
                             tape[pointer+1] = 1
                         else:
                             tape[pointer+1] = 0
-                    if amComparing = 2:
+                    if amComparing == 2:
                         if compareVal < tape[pointer]:
                             tape[pointer+1] = 1
                         else:
